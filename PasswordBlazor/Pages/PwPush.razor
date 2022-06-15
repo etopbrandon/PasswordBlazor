@@ -1,0 +1,41 @@
+﻿@using Newtonsoft.Json;
+
+@page "/PwPush"
+
+<PageTitle>Push Password</PageTitle>
+
+<center>
+    <h1>Push a password</h1>
+    <br />
+    <br />
+    Enter Password:
+    <input type="text" name="Password Input" @bind="Password"/>
+    <button type="button"@onclick="PushPw" class="btn btn-primary">Get Link</button>
+    <br />
+    <br />
+    <p>Link: <strong>@pwPushURL</strong></p>
+    <CopyToClipboardButton Text="@pwPushURL" />
+
+</center>
+
+@code {
+    private string? pwPushURL = "";
+    private string? Password { get; set; }
+
+    private async Task PushPw()
+    {
+
+        var values = new Dictionary<string, string>
+            {
+               { "password[payload]", $"{Password}" }
+            };
+
+        var content = new FormUrlEncodedContent(values);
+        var response = await PasswordBlazor.Data.ApiIntegration.client.PostAsync(Data.ApiIntegration.PwPushAPI, content);
+        var responseString = await response.Content.ReadAsStringAsync();
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        PasswordBlazor.Data.Root responseObj = JsonConvert.DeserializeObject<PasswordBlazor.Data.Root>(responseString);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        pwPushURL = $"{Data.ApiIntegration.PwPushPass}{responseObj?.url_token}";
+    }
+}
