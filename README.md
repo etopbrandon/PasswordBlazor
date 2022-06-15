@@ -1,5 +1,6 @@
 # PasswordBlazor
 **What is it?**
+
 PasswordBlazor is an app built on the ASP.NET Core Blazor Server framework to generate passwords and secure sharing links through PWPush. The passwords generated combine a randomly selected Adjective, Noun, number, and symbol to meet the initial requirements of most software. It is recommended that these are only used for initial passwords and users are prompted to reset upon first sign-in
 
 **How do I set this up?**
