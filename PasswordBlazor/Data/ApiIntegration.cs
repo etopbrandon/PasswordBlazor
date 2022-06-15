@@ -7,9 +7,9 @@ namespace PasswordBlazor.Data
         
         //UPDATE THESE!!!
         //API Endpoint (usually your PWPush URL + "/p.json"):
-        public static string PwPushAPI = "https://password.etop.tech/p.json";
+        public static string PwPushAPI = "";
         //PWPush Password URL (usually your PWPush URL + "/p/")
-        public static string PwPushPass = "https://password.etop.tech/p/";
+        public static string PwPushPass = "";
 
         //DONT TOUCH
         public static readonly HttpClient client = new();
