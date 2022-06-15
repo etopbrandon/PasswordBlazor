@@ -35,16 +35,22 @@ Welcome! To generate a new password and sharing link, click the button &#x1F604;
         // Import Nouns
         string[] nouns = File.ReadAllLines(@"Nouns.txt");
 
+        // Import Symbols
+        string[] Symbols = File.ReadAllLines(@"Symbols.txt");
+
         // Import random number generator
         Random random = new Random();
 
         int adjectiveNumber = random.Next(0, 39);
         int nounsNumber = random.Next(0, 39);
         int trailingNumber = random.Next(10, 99);
+        int symbolNumber = random.Next(0, 9);
 
         string selectedAdjective = adjectives[adjectiveNumber];
         string selectedNouns = nouns[nounsNumber];
-        newPassword = selectedAdjective + selectedNouns + trailingNumber + "!";
+        string selectedSymbol = Symbols[symbolNumber];
+
+        newPassword = selectedAdjective + selectedNouns + trailingNumber + selectedSymbol;
 
         var values = new Dictionary<string, string>
             {
